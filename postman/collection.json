@@ -1,0 +1,82 @@
+{
+	"info": {
+		"_postman_id": "8bc84e63-1cbc-4c58-ace7-e79f0d0fa048",
+		"name": "StoneBank Register",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "StoneBank",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200 - OK\", function() {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Has Boleto Information\", function() {",
+							"    var response = pm.response.json();",
+							"    pm.expect(response.id, \"Valor da propriedade id não deve ser nula\").to.not.be.undefined;",
+							"    pm.expect(response.links, \"Valor da propriedade links não deve ser nula\").to.not.be.undefined;",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\r\n    \"bankNumber\": 197,\r\n    \"authentication\": {\r\n    \t\"username\": \"Mithrandir\",\r\n        \"accessKey\": \"28323jfd-923jweid9\"\r\n\t},\r\n    \"agreement\": {\r\n\t\t\"agreementNumber\": 7946112\r\n\t},\r\n    \"title\": {\r\n        \"expireDate\": \"2021-08-04\",\r\n        \"amountInCents\": 200,\r\n        \"ourNumber\": 2703161,\r\n\t\t\"instructions\": \"NÃO RECEBER APÓS O VENCIMENTO. O prazo de compensação de boleto é de até 3 dias úteis após o pagamento, o valor do limite poderá ficar bloqueado até o processamento.\",\r\n        \"documentNumber\": \"1234567890\",\r\n        \"boletoType\":\"RC\"\r\n\t},\r\n    \"recipient\": {\r\n    \t\"name\": \"Nome do Recebedor (Loja)\",\r\n        \"document\": {\r\n        \t\"type\": \"CNPJ\",\r\n            \"number\": \"12123123000199\"\r\n\t\t},\r\n        \"address\": {\r\n            \"street\": \"Logradouro do Recebedor\",\r\n            \"number\": \"1000\",\r\n            \"complement\": \"Sala 01\",\r\n            \"zipCode\": \"00000000\",\r\n            \"district\": \"Bairro do Recebdor\",\r\n            \"city\": \"Cidade do Recebedor\",\r\n            \"stateCode\": \"RJ\"\r\n        }\r\n\t},\r\n\t\"buyer\": {\r\n        \"name\": \"Nome do Comprador (Cliente)\",\r\n        \"document\": {\r\n            \"type\": \"CPF\",\r\n            \"number\": \"39734022059\"\r\n        },\r\n        \"address\": {\r\n            \"street\": \"Logradouro do Comprador\",\r\n            \"number\": \"1000\",\r\n            \"complement\": \"Casa 01\",\r\n            \"district\": \"Bairro do Comprador\",\r\n    \t\t\"city\": \"Cidade do Comprador\",\r\n            \"stateCode\": \"São Paulo\",\r\n            \"zipCode\": \"15050-466\"\r\n        }\r\n    },\r\n    \"requestKey\":\"d3296f2d-781f-4caf-85e6-c30a7d85b30f\"\r\n}"
+				},
+				"url": {
+					"raw": "http://host.docker.internal:3000/v1/boleto/register",
+					"protocol": "http",
+					"host": [
+						"host.docker.internal"
+					],
+					"port": "3000",
+					"path": [
+						"v1",
+						"boleto",
+						"register"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

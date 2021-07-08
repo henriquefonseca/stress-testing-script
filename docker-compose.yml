@@ -1,0 +1,17 @@
+version: "2"
+services:
+  node:
+    build: .
+    mem_limit: 2048M
+    mem_reservation: 256M
+    cpus: 0.5
+    stdin_open: true
+    tty: true
+    user: "node"
+    working_dir: /home/node/app
+    environment:
+      - NODE_ENV=development
+    volumes:
+      - ./:/home/node/app
+    expose:
+      - "3003"
