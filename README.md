@@ -1,4 +1,5 @@
 # A script for API stress testing:
+The original code came from [here](https://medium.com/@mnu/run-multiple-postman-collection-in-parallel-stress-ee20801922ed).
 
 ## Instalation
 
